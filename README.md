@@ -2,7 +2,6 @@
 
 wedding-rsvp is a modern and elegant wedding RSVP website designed to simplify the process of managing wedding invitations and guest responses. Built with React, React Router, Firebase, and Node.js, this project offers a seamless and efficient way for guests to RSVP to weddings online
 
-
 ### Prerequisites
 
 To run this project, you will need:
@@ -16,26 +15,33 @@ To run this project, you will need:
    ```bash
    git clone https://github.com/Fredrikhov/wedding-rsvp.git
    cd wedding-rsvp
+   ```
 2. **Install dependencies for the frontend and backend:**
-    ```bash
-    cd frontend
-    npm install
-    cd ../backend
-    npm install
+   ```bash
+   cd frontend
+   npm install
+   cd ../backend
+   npm install
+   ```
 3. **Set up environment variables:**
-  * Create a .env file in the backend directory with the necessary environment variables (e.g., Firebase         service account, port number and secret for session / cookie).
 
-4. Run the delelopment servers:
-  * Frontend:
-    ```bash
-    cd frontend
-    npm run dev
-  * Backend:
-    ```bash
-    cd backend
-    npm start
+- Create a .env file in the backend directory with the necessary environment variables (e.g., Firebase service account, port number and secret for session / cookie).
+
+4. Run the development servers:
+
+- Frontend:
+  ```bash
+  cd frontend
+  npm run dev
+  ```
+- Backend:
+  ```bash
+  cd backend
+  npm start
+  ```
 
 ### Deployment
+
     Comming Soon
 
 # Contributing
@@ -47,7 +53,6 @@ We welcome contributions to enhance this project! Please follow these steps:
 3. Commit your changes (git commit -m 'Add some feature').
 4. Push to the branch (git push origin feature/your-feature-name).
 5. Open a pull request.
-
 
 # License
 
