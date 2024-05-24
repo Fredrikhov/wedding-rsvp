@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-router.post("/invitations", getInvitation);
+router.get("/invitation", getInvitation);
 router.get("/invitation", createInvitation);
 router.post("/login", loginController);
 router.post("/attendance", createAttendance);

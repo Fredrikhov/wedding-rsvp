@@ -27,7 +27,7 @@ To run this project, you will need:
 
 - Create a .env file in the backend directory with the necessary environment variables (e.g., Firebase service account, port number and secret for session / cookie).
 
-4. Run the development servers:
+  4.**Run the development servers:**
 
 - Frontend:
   ```bash
@@ -36,15 +36,15 @@ To run this project, you will need:
   ```
 - Backend:
   ```bash
-  cd backend
+  cd backend/functions
   npm start
   ```
 
 ### Deployment
 
-    Comming Soon
+    Coming Soon
 
-# Contributing
+### Contributing
 
 We welcome contributions to enhance this project! Please follow these steps:
 

@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.div {
+  padding: 38px;
+  background-color: hsla(164, 19%, 38%, 0.7);
+}
+
+.p {
+  background-color: hsla(164, 19%, 38%, 1);
+  margin-bottom: auto;
+  flex-grow: 1;
+}
