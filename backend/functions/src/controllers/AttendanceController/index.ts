@@ -3,16 +3,21 @@ import { db } from "../../data-access";
 import { Timestamp } from "firebase-admin/firestore";
 
 export const getAttendance = async (req: Request, res: Response) => {
-  const { pin } = req.body;
-  console.log(pin);
+  const { authenticated } = req.session;
   try {
-    const document = await db.collection("attendance").doc(pin);
-    const doc = (await document.get()).data();
-    if (doc) {
-      return res.send(doc);
+    if (authenticated) {
+      const document = await db
+        .collection("attendance")
+        .doc(`${authenticated}`);
+      const doc = (await document.get()).data();
+      if (doc) {
+        return res.send(doc);
+      } else {
+        console.log("feilet");
+        return res.sendStatus(404);
+      }
     } else {
-      console.log("feilet");
-      return res.sendStatus(404);
+      res.sendStatus(401);
     }
   } catch (e) {
     return res.sendStatus(500);

@@ -1,0 +1,33 @@
+.wrapper {
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: hsla(41, 16%, 55%, 0); */
+}
+
+.svgMain {
+  background: url("/flower.svg");
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  z-index: 1;
+  width: 700px;
+  height: 700px;
+}
+
+.p {
+  position: relative;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 600px) {
+  .svgMain {
+    height: 500px;
+    width: 500px;
+  }
+}

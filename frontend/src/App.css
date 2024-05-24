@@ -1,0 +1,9 @@
+.layout {
+  display: grid;
+  grid-template:
+    "nav" 0.1fr
+    "main" 1fr
+    "footer" 0.2fr / 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
