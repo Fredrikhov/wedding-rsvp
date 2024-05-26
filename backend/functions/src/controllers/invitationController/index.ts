@@ -23,7 +23,8 @@ export const getInvitation = async (req: Request, res: Response) => {
         .doc(`${authenticated}`);
       const doc = (await document.get()).data();
       if (doc) {
-        res.send(doc);
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).json(doc);
       } else {
         res.sendStatus(404);
       }

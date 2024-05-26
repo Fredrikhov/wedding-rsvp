@@ -5,7 +5,7 @@ import loginStyle from "./Login.module.css";
 import classNames from "classnames";
 
 export const Login = () => {
-  const _BASE_API_LOGIN = "http://localhost:3000/login";
+  const _BASE_API_LOGIN = "/api/login";
   const [pin, setPin] = useState<string>("");
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export const Login = () => {
         navigate("/");
         navigate(0);
       } else {
-        setError("Feil Pin, Skrev Du Riktig Kode?");
+        setError("Feil Pin, skrev du riktig kode?");
       }
     } catch (e) {
       setError(`${(e as Error).message}`);

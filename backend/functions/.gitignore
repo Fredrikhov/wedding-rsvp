@@ -2,6 +2,10 @@
 lib/**/*.js
 lib/**/*.js.map
 
+# do not add builds
+dist 
+lib
+
 # TypeScript v1 declaration files
 typings/
 
