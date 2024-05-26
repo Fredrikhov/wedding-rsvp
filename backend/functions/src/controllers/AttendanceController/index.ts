@@ -11,7 +11,7 @@ export const getAttendance = async (req: Request, res: Response) => {
         .doc(`${authenticated}`);
       const doc = (await document.get()).data();
       if (doc) {
-        return res.send(doc);
+        return res.status(200).send(doc);
       } else {
         console.log("feilet");
         return res.sendStatus(404);

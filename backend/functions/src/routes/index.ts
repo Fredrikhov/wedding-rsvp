@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import { loginController } from "../controllers/LoginController";
 import {
   createInvitation,
@@ -11,10 +12,15 @@ import {
 
 const router = express.Router();
 
-router.get("/invitation", getInvitation);
-router.get("/invitation", createInvitation);
-router.post("/login", loginController);
-router.post("/attendance", createAttendance);
-router.get("/attendance", getAttendance);
+router.get("/api/invitation", getInvitation);
+router.post("/api/invitation", createInvitation);
+router.post("/api/login", loginController);
+router.post("/api/attendance", createAttendance);
+router.get("/api/attendance", getAttendance);
+
+// catch all route
+router.get("*", (_, res) =>
+  res.sendFile(path.join(__dirname, "../../dist", "index.html"))
+);
 
 export { router };

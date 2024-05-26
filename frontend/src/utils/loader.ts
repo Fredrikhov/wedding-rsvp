@@ -1,7 +1,7 @@
 import { defer } from "react-router-dom";
 
-const _BASE_API_INVITATION = "http://localhost:3000/invitation";
-const _BASE_API_ATTENDANCE = "http://localhost:3000/attendance";
+const _BASE_API_INVITATION = "/api/invitation";
+const _BASE_API_ATTENDANCE = "/api/attendance";
 
 const getInvitationLoader = async () => {
   const response = await fetch(`${_BASE_API_INVITATION}`, {

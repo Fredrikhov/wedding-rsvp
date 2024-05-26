@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "noImplicitReturns": false,
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
     "noUnusedLocals": false,
     "outDir": "lib",
     "sourceMap": true,
-    "strict": true,
-    "target": "es2017",
-    "esModuleInterop": true,
-    "typeRoots": ["./types"],
+    "strict": false,
+    "rootDir": "./src",
     "noImplicitAny": false,
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "src/**/*"
   ]
 }

@@ -15,6 +15,7 @@ export const Logout = () => {
     if (isAuthenticated) {
       handleRemoveCookie();
       setIsAuthenticated(false);
+      navigate("/");
       navigate(0);
     } /* eslint-disable react-hooks/exhaustive-deps */
   }, [isAuthenticated]);

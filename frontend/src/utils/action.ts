@@ -1,6 +1,6 @@
 import { ActionFunctionArgs } from "react-router-dom";
 
-const _BASE_API_ATTENDANCE = "http://localhost:3000/attendance";
+const _BASE_API_ATTENDANCE = "/api/attendance";
 
 export const postAttendance = async ({ request }: ActionFunctionArgs) => {
   const response = await request.formData().then((formData) =>
