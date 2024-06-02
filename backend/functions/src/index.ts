@@ -18,7 +18,7 @@ dotenv.config();
 const store = FirestoreStore(session);
 const app = express();
 const port = process.env.PORT;
-const SESSION_SECRET = process.env.session_secret;
+const SESSION_SECRET = process.env.SESSION_SECRET;
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.CORS_ORIGIN }));
 
