@@ -5,7 +5,7 @@ import loginStyle from "./Login.module.css";
 import classNames from "classnames";
 
 export const Login = () => {
-  const _BASE_API_LOGIN = "http://localhost:3000/login";
+  const _BASE_API_LOGIN = "/api/login";
   const [pin, setPin] = useState<string>("");
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export const Login = () => {
         navigate("/");
         navigate(0);
       } else {
-        setError("Feil Pin, Skrev Du Riktig Kode?");
+        setError("Feil Pin, skrev du riktig kode?");
       }
     } catch (e) {
       setError(`${(e as Error).message}`);
@@ -42,11 +42,19 @@ export const Login = () => {
 
   return (
     <div className={classNames(`${loginStyle.div}`)}>
-      <h1>Pin</h1>
+      <h2 className={loginStyle.h2}>Login</h2>
+      <p>Enter your four-digit PIN code found on your invitation.</p>
       {error}
-      <form onSubmit={handleAuth}>
-        <input maxLength={3} onChange={handleOnChange}></input>
-        <button>Login</button>
+      <form onSubmit={handleAuth} className={loginStyle.form}>
+        <label className={loginStyle.label}>PIN code</label>
+        <input
+          maxLength={3}
+          onChange={handleOnChange}
+          className={loginStyle.input}
+          type="password"
+          placeholder="Enter your four-digit PIN code"
+        ></input>
+        <button className={loginStyle.button}>Login</button>
       </form>
     </div>
   );

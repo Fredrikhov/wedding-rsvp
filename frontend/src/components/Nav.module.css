@@ -53,6 +53,7 @@
     position: absolute;
     width: 100%;
     gap: 24px;
+    z-index: 2;
   }
 
   .li {

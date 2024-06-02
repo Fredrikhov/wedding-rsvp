@@ -15,6 +15,7 @@ export const WeddingRSVPForm = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    console.log(loader);
     console.log(fetcher);
     if (!loader.attendance.error) {
       const { comment, allergy, attending, email } = loader.attendance;
@@ -24,7 +25,7 @@ export const WeddingRSVPForm = () => {
       setComment(comment);
     } else {
       setError(
-        `Invitation: ${loader.attendance.error} -- Invitation: ${loader.invitation.error}`
+        `Invitation: ${loader.attendance.error} -- Attendance: ${loader.invitation.error}`
       );
     }
   }, [loader, fetcher]);

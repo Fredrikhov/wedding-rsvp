@@ -20,7 +20,7 @@ const app = express();
 const port = process.env.PORT;
 const SESSION_SECRET = process.env.SESSION_SECRET;
 app.use(express.json());
-app.use(cors({ credentials: true, origin: process.env.CORS_ORIGIN }));
+app.use(cors({ credentials: true }));
 
 app.use(
   session({
@@ -35,8 +35,8 @@ app.use(
   })
 );
 
+app.use(express.static("dist"));
+
 app.use("/", router);
 
-app.listen(port, () => {
-  console.log(`Server is runnning at -> http://localhost:${port}`);
-});
+app.listen(port);
