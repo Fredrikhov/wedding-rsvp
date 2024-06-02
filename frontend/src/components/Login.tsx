@@ -42,11 +42,19 @@ export const Login = () => {
 
   return (
     <div className={classNames(`${loginStyle.div}`)}>
-      <h1>Pin</h1>
+      <h2 className={loginStyle.h2}>Login</h2>
+      <p>Enter your four-digit PIN code found on your invitation.</p>
       {error}
-      <form onSubmit={handleAuth}>
-        <input maxLength={3} onChange={handleOnChange}></input>
-        <button>Login</button>
+      <form onSubmit={handleAuth} className={loginStyle.form}>
+        <label className={loginStyle.label}>PIN code</label>
+        <input
+          maxLength={3}
+          onChange={handleOnChange}
+          className={loginStyle.input}
+          type="password"
+          placeholder="Enter your four-digit PIN code"
+        ></input>
+        <button className={loginStyle.button}>Login</button>
       </form>
     </div>
   );
