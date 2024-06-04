@@ -2,15 +2,8 @@
   "name": "functions",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
-    "build": "tsc",
-    "dev": "nodemon src/index.ts",
-    "build:watch": "tsc --watch",
-    "build:ui": "rm -rf dist && cd ../../frontend && npm install && npm run build && cp -r dist ../backend/functions",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "shell": "npm run build && firebase functions:shell",
-    "start": " rm -rf lib && tsc && node lib/index.js",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "dev": "NODE_ENV=development nodemon src/index.ts",
+    "vercel-build": "NODE_ENV=production echo hello World"
   },
   "engines": {
     "node": "18"
@@ -31,7 +24,9 @@
     "dotenv": "^16.4.5",
     "eslint": "^8.9.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^5.1.3",
     "firebase-functions-test": "^3.1.0",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",

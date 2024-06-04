@@ -18,9 +18,4 @@ router.post("/api/login", loginController);
 router.post("/api/attendance", createAttendance);
 router.get("/api/attendance", getAttendance);
 
-// catch all route
-router.get("*", (_, res) =>
-  res.sendFile(path.join(__dirname, "../../dist", "index.html"))
-);
-
 export { router };

@@ -12,17 +12,26 @@ declare module "express-session" {
     authenticated: number;
   }
 }
-
 dotenv.config();
-
 const store = FirestoreStore(session);
 const app = express();
 const port = process.env.PORT;
 const SESSION_SECRET = process.env.SESSION_SECRET;
-app.use(express.json());
-app.use(cors({ credentials: true }));
 
+process.env.NODE_ENV === "production"
+  ? dotenv.config({ path: ".env.production" })
+  : // app.use(express.static("dist"))
+    dotenv.config({ path: ".env.development" }) &&
+    console.log("Loading development");
+
+const oneDay = 60 * 60 * 24 * 1000;
 app.use(
+  cors({
+    credentials: true,
+    origin: process.env.CORS_ORIGIN,
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+  }),
+  express.json(),
   session({
     store: new store({
       database: db,
@@ -31,12 +40,19 @@ app.use(
     secret: SESSION_SECRET as string,
     resave: true,
     saveUninitialized: false,
-    cookie: { maxAge: 60 * 60 * 24 * 1000 }, // expires in one day
+    cookie: {
+      maxAge: oneDay, // expires in one day
+      secure: JSON.parse(process.env.SECURE), // Convert string to boolean value
+      sameSite: "none",
+      httpOnly: true,
+      // signed: false,
+      domain: process.env.DOMAIN,
+    },
   })
 );
-
-app.use(express.static("dist"));
 
 app.use("/", router);
 
 app.listen(port);
+
+export default app;

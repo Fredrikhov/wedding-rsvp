@@ -13,6 +13,7 @@ export const loginController = async (req: Request, res: Response) => {
       if (!doc.empty) {
         try {
           session.authenticated = pin;
+          console.log(session);
           return res.sendStatus(201);
         } catch (e) {
           console.log((e as Error).message);

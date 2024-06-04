@@ -23,7 +23,8 @@ module.exports = {
   ],
   plugins: [
     "@typescript-eslint",
-    "import",
+    "import", 
+    "plugin:prettier/recommended"
   ],
   rules: {
     "quotes": ["error", "double"],
