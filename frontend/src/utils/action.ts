@@ -1,10 +1,8 @@
 import { ActionFunctionArgs } from "react-router-dom";
 
-const _BASE_API_ATTENDANCE = "/api/attendance";
-
 export const postAttendance = async ({ request }: ActionFunctionArgs) => {
   const response = await request.formData().then((formData) =>
-    fetch(`${_BASE_API_ATTENDANCE}`, {
+    fetch(`${import.meta.env.VITE_BASE_API_POST_ATTENDANCE}`, {
       method: "POST",
       credentials: "include",
       headers: {

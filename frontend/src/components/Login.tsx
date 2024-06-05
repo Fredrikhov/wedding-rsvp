@@ -5,7 +5,6 @@ import loginStyle from "./Login.module.css";
 import classNames from "classnames";
 
 export const Login = () => {
-  const _BASE_API_LOGIN = "/api/login";
   const [pin, setPin] = useState<string>("");
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${_BASE_API_LOGIN}`, {
+      const response = await fetch(`${import.meta.env.VITE_BASE_API_LOGIN}`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -25,6 +24,8 @@ export const Login = () => {
         body: JSON.stringify({ pin: pin }),
       });
       if (response.ok) {
+        const data = await response.json();
+        console.log(data);
         setCookie("token", pin, { path: "/", maxAge: 60 * 60 * 24 });
         navigate("/");
         navigate(0);

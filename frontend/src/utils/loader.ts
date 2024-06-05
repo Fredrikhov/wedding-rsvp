@@ -1,10 +1,7 @@
 import { defer } from "react-router-dom";
 
-const _BASE_API_INVITATION = "/api/invitation";
-const _BASE_API_ATTENDANCE = "/api/attendance";
-
 const getInvitationLoader = async () => {
-  const response = await fetch(`${_BASE_API_INVITATION}`, {
+  const response = await fetch(`${import.meta.env.VITE_BASE_API_INVITATION}`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -18,7 +15,7 @@ const getInvitationLoader = async () => {
 };
 
 const getAttendanceLoader = async () => {
-  const response = await fetch(`${_BASE_API_ATTENDANCE}`, {
+  const response = await fetch(`${import.meta.env.VITE_BASE_API_ATTENDANCE}`, {
     method: "GET",
     credentials: "include",
     headers: {
