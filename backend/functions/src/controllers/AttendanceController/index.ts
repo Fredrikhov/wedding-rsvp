@@ -27,16 +27,19 @@ export const getAttendance = async (req: Request, res: Response) => {
 export const createAttendance = async (req: Request, res: Response) => {
   const { allergy, comment, email, attending } = req.body;
   const { authenticated } = req.session;
-
   try {
-    await db.collection("attendance").doc(`${authenticated}`).set({
-      allergy: allergy,
-      email: email,
-      attending: attending,
-      comment: comment,
-      createdAt: Timestamp.now(),
-    });
-    return res.sendStatus(200);
+    if (authenticated) {
+      await db.collection("attendance").doc(`${authenticated}`).set({
+        allergy: allergy,
+        email: email,
+        attending: attending,
+        comment: comment,
+        createdAt: Timestamp.now(),
+      });
+      return res.sendStatus(200);
+    } else {
+      return res.status(201).send("Not authenticated");
+    }
   } catch (e) {
     console.log(`${(e as Error).message} ${res}`);
   }

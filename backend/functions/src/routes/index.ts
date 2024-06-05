@@ -13,9 +13,9 @@ import {
 const router = express.Router();
 
 router.get("/api/invitation", getInvitation);
-router.post("/api/invitation", createInvitation);
+router.post("/api/invitations", createInvitation);
 router.post("/api/login", loginController);
-router.post("/api/attendance", createAttendance);
+router.post("/api/attendances", createAttendance);
 router.get("/api/attendance", getAttendance);
 
 export { router };

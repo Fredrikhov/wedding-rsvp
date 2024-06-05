@@ -13,23 +13,19 @@ declare module "express-session" {
   }
 }
 dotenv.config();
-const store = FirestoreStore(session);
-const app = express();
-const port = process.env.PORT;
-const SESSION_SECRET = process.env.SESSION_SECRET;
 
+const app = express();
+const store = FirestoreStore(session);
 process.env.NODE_ENV === "production"
   ? dotenv.config({ path: ".env.production" })
-  : // app.use(express.static("dist"))
-    dotenv.config({ path: ".env.development" }) &&
-    console.log("Loading development");
+  : dotenv.config({ path: ".env.development" });
 
-const oneDay = 60 * 60 * 24 * 1000;
+app.set("trust proxy", 1); // This allows secure cookies to be set correctly even if the proxy handles the HTTPS termination
 app.use(
   cors({
     credentials: true,
     origin: process.env.CORS_ORIGIN,
-    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    methods: ["POST", "GET"],
   }),
   express.json(),
   session({
@@ -37,15 +33,15 @@ app.use(
       database: db,
     }),
     name: "__session", // required for Cloud Functions / Cloud Run
-    secret: SESSION_SECRET as string,
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: false,
     cookie: {
-      maxAge: oneDay, // expires in one day
+      maxAge: 60 * 60 * 24 * 1000, // expires in one day
       secure: JSON.parse(process.env.SECURE), // Convert string to boolean value
       sameSite: "none",
       httpOnly: true,
-      // signed: false,
+      path: "/",
       domain: process.env.DOMAIN,
     },
   })
@@ -53,6 +49,6 @@ app.use(
 
 app.use("/", router);
 
-app.listen(port);
+app.listen(process.env.PORT);
 
 export default app;
