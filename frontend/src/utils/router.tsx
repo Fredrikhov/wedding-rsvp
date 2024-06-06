@@ -40,12 +40,13 @@ export const router = createBrowserRouter([
         path: "/",
         element: <ProtectedRoute />,
         errorElement: <NotFound />,
+
         children: [
           {
             path: "/rsvp",
-            element: <WeddingRSVPForm />,
             loader: loader,
             action: postAttendance,
+            element: <WeddingRSVPForm />,
           },
         ],
       },

@@ -1,4 +1,5 @@
-import { defer } from "react-router-dom";
+import { Cookies } from "react-cookie";
+import { defer, redirect } from "react-router-dom";
 
 const getInvitationLoader = async () => {
   const response = await fetch(`${import.meta.env.VITE_BASE_API_INVITATION}`, {
@@ -29,9 +30,14 @@ const getAttendanceLoader = async () => {
 };
 
 export const loader = async () => {
-  const [invitation, attendance] = await Promise.all([
-    getInvitationLoader(),
-    getAttendanceLoader(),
-  ]);
-  return defer({ invitation, attendance });
+  const cookie = new Cookies().get("token");
+  if (cookie) {
+    const [invitation, attendance] = await Promise.all([
+      getInvitationLoader(),
+      getAttendanceLoader(),
+    ]);
+    return defer({ invitation, attendance });
+  } else {
+    return redirect("/login");
+  }
 };

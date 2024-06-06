@@ -15,8 +15,6 @@ export const WeddingRSVPForm = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    console.log(loader);
-    console.log(fetcher);
     if (!loader.attendance.error) {
       const { comment, allergy, attending, email } = loader.attendance;
       setAttending(attending);
@@ -24,11 +22,9 @@ export const WeddingRSVPForm = () => {
       setAllergies(allergy);
       setComment(comment);
     } else {
-      setError(
-        `Invitation: ${loader.attendance.error} -- Attendance: ${loader.invitation.error}`
-      );
+      setError(`Error during load, please refresh the page`);
     }
-  }, [loader, fetcher]);
+  }, [loader]);
 
   const handleChange = () => {
     setAttending((prev) => !prev);
