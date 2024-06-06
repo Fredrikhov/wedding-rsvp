@@ -25,9 +25,9 @@ To run this project, you will need:
    ```
 3. **Set up environment variables:**
 
-- Create a .env file in the backend directory with the necessary environment variables (e.g., Firebase service account, port number and secret for session / cookie).
+- Create a .env.development & .env.production file in the backend/functions directory with the necessary environment variables (e.g., Firebase service account, port number and secret for session / cookie).
 
-  4.**Run the development servers:**
+4. **Run the development servers:**
 
 - Frontend:
   ```bash
@@ -37,7 +37,7 @@ To run this project, you will need:
 - Backend:
   ```bash
   cd backend/functions
-  npm start
+  npm run dev
   ```
 
 ### Deployment
@@ -60,4 +60,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 # Contact
 
-If you have any questions or feedback, please feel free to open an issue or contact us at fredrik@hovweb.org.
+If you have any questions or feedback, please feel free to open an issue or contact me at fredrik@hovweb.org.
