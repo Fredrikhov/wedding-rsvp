@@ -1,14 +1,14 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, defer } from "react-router-dom";
 import { App } from "../App";
 import { NotFound } from "../components/NotFound";
 import { Index } from "../components/Index";
 import { Information } from "../components/Information";
 import { Login } from "../components/Login";
-import { Logout } from "../components/Logout";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { WeddingRSVPForm } from "../components/WeddingRSVPForm";
-import { loader } from "./loader";
-import { postAttendance } from "./action";
+import { getAttendanceLoader, getInvitationLoader } from "./loader";
+import { handleAuthAction, postAttendanceAction } from "./action";
+import { Logout } from "../components/Logout";
 
 export const router = createBrowserRouter([
   {
@@ -29,12 +29,13 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+        action: handleAuthAction,
         errorElement: <NotFound />,
       },
       {
         path: "/logout",
-        element: <Logout />,
         errorElement: <NotFound />,
+        element: <Logout />,
       },
       {
         path: "/",
@@ -44,8 +45,13 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/rsvp",
-            loader: loader,
-            action: postAttendance,
+            loader: async () => {
+              return defer({
+                invitation: getInvitationLoader(),
+                attendance: getAttendanceLoader(),
+              });
+            },
+            action: postAttendanceAction,
             element: <WeddingRSVPForm />,
           },
         ],

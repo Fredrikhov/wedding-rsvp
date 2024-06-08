@@ -10,7 +10,7 @@ export const createInvitation = async (req: Request, res: Response) => {
     });
     return res.status(200).send();
   } catch (e) {
-    console.log(`${(e as Error).message} ${res}`);
+    res.status(500).send(e);
   }
 };
 
@@ -29,7 +29,6 @@ export const getInvitation = async (req: Request, res: Response) => {
         res.sendStatus(404);
       }
     } else {
-      // unauthorized
       res.sendStatus(401);
     }
   } catch (e) {
