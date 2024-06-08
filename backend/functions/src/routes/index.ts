@@ -1,6 +1,9 @@
 import express from "express";
-import path from "path";
-import { loginController } from "../controllers/LoginController";
+
+import {
+  loginController,
+  logoutController,
+} from "../controllers/AuthController";
 import {
   createInvitation,
   getInvitation,
@@ -17,5 +20,6 @@ router.post("/api/invitations", createInvitation);
 router.post("/api/login", loginController);
 router.post("/api/attendances", createAttendance);
 router.get("/api/attendance", getAttendance);
+router.post("/api/logout", logoutController);
 
 export { router };

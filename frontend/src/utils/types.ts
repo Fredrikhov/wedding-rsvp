@@ -19,7 +19,7 @@ type Tinvitation = {
   error?: string;
 };
 
-type Ttimestamp = {
+export type Ttimestamp = {
   _seconds: number;
   _nanoseconds: number;
 };

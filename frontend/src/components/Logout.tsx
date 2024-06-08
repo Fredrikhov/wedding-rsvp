@@ -1,31 +1,30 @@
-import logoutStyle from "./Logout.module.css";
-import classNames from "classnames";
+import LogoutStyle from "./Logout.module.css";
 import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export const Logout = () => {
-  const [cookie, , removeCookie] = useCookies(["token"]);
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    typeof cookie.token !== "undefined"
-  );
-  const navigate = useNavigate();
-
+  const [redirect, setRedirect] = useState(false);
   useEffect(() => {
-    if (isAuthenticated) {
-      handleRemoveCookie();
-      setIsAuthenticated(false);
-      navigate("/");
-      navigate(0);
-    } /* eslint-disable react-hooks/exhaustive-deps */
-  }, [isAuthenticated]);
+    const removeCookie = async () => {
+      await fetch(`${import.meta.env.VITE_BASE_API_LOGOUT}`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ delete: Cookies.get("token") }),
+      })
+        .then(() => setRedirect(true))
+        .catch((e) => console.log((e as Error).message));
+    };
+    removeCookie();
+  });
 
-  const handleRemoveCookie = () => removeCookie("token");
-
-  return (
-    <div className={classNames(`${logoutStyle.main}`)}>
-      <h1>You Are Logged Out</h1>
-      <p>Please Close The Tab / Window</p>
-    </div>
+  return redirect ? (
+    <Navigate to={"/"} />
+  ) : (
+    <h2 className={LogoutStyle.logout}>Logging out...</h2>
   );
 };

@@ -1,8 +1,5 @@
-import { Cookies } from "react-cookie";
-import { defer, redirect } from "react-router-dom";
-
-const getInvitationLoader = async () => {
-  const response = await fetch(`${import.meta.env.VITE_BASE_API_INVITATION}`, {
+export const getInvitationLoader = () => {
+  const response = fetch(`${import.meta.env.VITE_BASE_API_INVITATION}`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -12,11 +9,11 @@ const getInvitationLoader = async () => {
   })
     .then((res) => res.json())
     .catch((e) => Object.assign(e, { error: `${(e as Error).message}` }));
-  return await response;
+  return response;
 };
 
-const getAttendanceLoader = async () => {
-  const response = await fetch(`${import.meta.env.VITE_BASE_API_ATTENDANCE}`, {
+export const getAttendanceLoader = () => {
+  const response = fetch(`${import.meta.env.VITE_BASE_API_ATTENDANCE}`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -26,18 +23,5 @@ const getAttendanceLoader = async () => {
   })
     .then((res) => res.json())
     .catch((e) => Object.assign(e, { error: `${(e as Error).message}` }));
-  return await response;
-};
-
-export const loader = async () => {
-  const cookie = new Cookies().get("token");
-  if (cookie) {
-    const [invitation, attendance] = await Promise.all([
-      getInvitationLoader(),
-      getAttendanceLoader(),
-    ]);
-    return defer({ invitation, attendance });
-  } else {
-    return redirect("/login");
-  }
+  return response;
 };

@@ -1,41 +1,11 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useFetcher } from "react-router-dom";
 import loginStyle from "./Login.module.css";
 import classNames from "classnames";
+import { ChangeEvent, useState } from "react";
 
 export const Login = () => {
-  const [pin, setPin] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const navigate = useNavigate();
-  const [, setCookie] = useCookies(["token"]);
-
-  const handleAuth = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_API_LOGIN}`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ pin: pin }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        setCookie("token", pin, { path: "/", maxAge: 60 * 60 * 24 });
-        navigate("/");
-        navigate(0);
-      } else {
-        setError("Feil Pin, skrev du riktig kode?");
-      }
-    } catch (e) {
-      setError(`${(e as Error).message}`);
-    }
-  };
+  const [, setPin] = useState<string>("");
+  const fetcher = useFetcher();
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPin(e.target.value);
@@ -45,18 +15,22 @@ export const Login = () => {
     <div className={classNames(`${loginStyle.div}`)}>
       <h2 className={loginStyle.h2}>Login</h2>
       <p>Enter your four-digit PIN code found on your invitation.</p>
-      {error}
-      <form onSubmit={handleAuth} className={loginStyle.form}>
-        <label className={loginStyle.label}>PIN code</label>
+      {fetcher.data?.error && (
+        <p className={loginStyle.error}>{fetcher.data.error}</p>
+      )}
+      <fetcher.Form className={loginStyle.form} method="post" action="/login">
         <input
           maxLength={3}
           onChange={handleOnChange}
           className={loginStyle.input}
+          name="pin"
           type="password"
           placeholder="Enter your four-digit PIN code"
         ></input>
-        <button className={loginStyle.button}>Login</button>
-      </form>
+        <button type="submit" className={loginStyle.button}>
+          Submit
+        </button>
+      </fetcher.Form>
     </div>
   );
 };

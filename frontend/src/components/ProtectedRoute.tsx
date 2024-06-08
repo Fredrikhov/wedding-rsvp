@@ -1,7 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 
-export const ProtectedRoute = () => {
-  const [cookie, ,] = useCookies(["token"]);
-  return cookie.token ? <Outlet /> : <Navigate to="/login" replace />;
-};
+export const ProtectedRoute = () =>
+  Cookies.get("token") ? <Outlet /> : <Navigate to="/login" />;
