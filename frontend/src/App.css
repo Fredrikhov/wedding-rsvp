@@ -1,8 +1,11 @@
 .layout {
   display: grid;
   grid-template:
-    "nav" 0.1fr
+    "nav" auto
     "main" 1fr
-    "footer" 0.05fr / 100%;
+    "footer" auto / 100%;
   min-height: 100vh;
+}
+.background-color {
+  background-color: #f3eada;
 }

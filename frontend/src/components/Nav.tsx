@@ -53,7 +53,9 @@ export const Nav = () => {
     <nav className={navStyle.nav}>
       <ul className={navStyle.mobile_ul}>
         <li className={classNames(`${navStyle.mobile_li}`, `${navStyle.img}`)}>
-          <NavLink to="/">A & G</NavLink>
+          <NavLink className={navStyle.logo} to="/">
+            A<span className={navStyle.logo_span}>&</span>G
+          </NavLink>
         </li>
         <li className={navStyle.mobile_li} onClick={toggleMenu}>
           <GiHamburgerMenu />

@@ -1,12 +1,20 @@
 import { useFetcher } from "react-router-dom";
 import loginStyle from "./Login.module.css";
 import classNames from "classnames";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 export const Login = () => {
   const [, setPin] = useState<string>("");
   const fetcher = useFetcher();
+  const [submitAttendingLoading, setSubmitAttendingLoading] = useState(false);
 
+  useEffect(() => {
+    if (fetcher.state == "idle") {
+      setSubmitAttendingLoading(false);
+    } else {
+      setSubmitAttendingLoading(true);
+    }
+  }, [fetcher]);
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPin(e.target.value);
   };
@@ -27,7 +35,11 @@ export const Login = () => {
           type="password"
           placeholder="Enter your four-digit PIN code"
         ></input>
-        <button type="submit" className={loginStyle.button}>
+        <button
+          type="submit"
+          className={loginStyle.button}
+          disabled={submitAttendingLoading}
+        >
           Submit
         </button>
       </fetcher.Form>

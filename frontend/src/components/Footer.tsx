@@ -8,17 +8,7 @@ export const Footer = () => {
           <ul className={footerStyle.footer_ul}>
             <li className={footerStyle.footer_li}>
               <a className={footerStyle.footer_a} href="#">
-                Hellu
-              </a>
-            </li>
-            <li className={footerStyle.footer_li}>
-              <a className={footerStyle.footer_a} href="#">
-                Hellu
-              </a>
-            </li>
-            <li className={footerStyle.footer_li}>
-              <a className={footerStyle.footer_a} href="#">
-                Hellu
+                Lorem impsum
               </a>
             </li>
             <li className={footerStyle.footer_li}>
@@ -27,17 +17,7 @@ export const Footer = () => {
 
             <li className={footerStyle.footer_li}>
               <a className={footerStyle.footer_a} href="#">
-                Hellu
-              </a>
-            </li>
-            <li className={footerStyle.footer_li}>
-              <a className={footerStyle.footer_a} href="#">
-                Hellu
-              </a>
-            </li>
-            <li className={footerStyle.footer_li}>
-              <a className={footerStyle.footer_a} href="#">
-                Hellu
+                Lorem impsum
               </a>
             </li>
           </ul>
