@@ -1,33 +1,68 @@
 .wrapper {
   height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
+  max-width: 768px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* background-color: hsla(41, 16%, 55%, 0); */
+  gap: 2rem;
+  margin: 0 auto;
+  text-shadow: 0 0 1px #000;
+  color: white;
+  font-weight: 800;
+  z-index: 2;
 }
 
 .svgMain {
   background: url("/flower.svg");
-
-  background-repeat: no-repeat;
-  background-size: contain;
   position: absolute;
-  z-index: 1;
-  width: 700px;
-  height: 700px;
+  width: 100vmin;
+  height: 100vmin;
 }
 
+.p_header {
+  font-size: 2vw;
+  letter-spacing: 0.2em;
+}
 .p {
-  position: relative;
+  text-align: center;
+  letter-spacing: 0.1em;
+  font-size: 1vw;
+  z-index: 1;
+  max-width: 368px;
+}
+
+.date {
+  font-weight: 600;
+  font-style: italic;
+}
+
+.place {
+  font-style: italic;
+  letter-spacing: 0.1em;
+}
+
+.span {
+  font-family: "Great_Vibes";
+  font-weight: 400;
+  font-style: normal;
+}
+
+.button {
   z-index: 2;
+  border: 1px solid white;
+  padding: 0.6rem 3rem;
+
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
-  .svgMain {
-    height: 500px;
-    width: 500px;
+  .wrapper {
+    max-width: 200px;
+  }
+  .p {
+    font-size: 2vw;
   }
 }

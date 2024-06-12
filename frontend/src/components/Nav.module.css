@@ -1,27 +1,29 @@
 @media only screen and (min-width: 600px) {
   .nav {
-    background-color: hsla(164, 19%, 38%, 0.8);
+    background-color: #4e7369;
     z-index: 2;
+    padding: 36px;
   }
 
   .ul {
     display: flex;
     justify-content: center;
     height: 100%;
+    column-gap: 4rem;
   }
 
   .li {
-    margin-left: 24px;
     list-style-type: none;
     display: flex;
     align-items: center;
+    letter-spacing: 0.125em;
   }
 
   .a {
     text-decoration: none;
     text-transform: uppercase;
     color: white;
-    font-size: 0.6em;
+    font-size: 0.7em;
     height: 100%;
     display: flex;
     align-items: center;
@@ -29,9 +31,9 @@
 
   .active {
     text-transform: uppercase;
-    font-size: 0.6em;
+    font-size: 0.7em;
     text-decoration: none;
-    color: red;
+    color: grey;
   }
 
   .mobile_ul {
@@ -44,15 +46,21 @@
     display: none;
   }
 
+  .nav {
+    background-color: #4e7369;
+    padding: 24px 0;
+  }
+
   .ul.is_open {
     display: flex;
-    background-color: grey;
+    background-color: #4e7369;
     justify-content: center;
     list-style-type: none;
     flex-direction: column;
     position: absolute;
     width: 100%;
-    gap: 24px;
+    padding: 24px 0;
+    gap: 2rem;
     z-index: 2;
   }
 
@@ -61,21 +69,44 @@
     justify-content: center;
   }
 
+  .logo_span {
+    font-family: "Great_Vibes";
+    text-decoration: none;
+  }
+
+  .logo {
+    text-decoration: none;
+    letter-spacing: 0.5em;
+    color: white;
+  }
+
+  .a {
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+
+  .active {
+    color: grey;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
   .mobile_ul {
     display: flex;
-    background-color: hsla(164, 19%, 38%, 0.8);
+    background-color: #4e7369;
     justify-content: space-between;
-    border-bottom: 1px solid grey;
     height: 100%;
   }
 
   .mobile_li {
     padding: 0 12px;
     list-style-type: none;
+    letter-spacing: 0.2rem;
     display: flex;
     align-items: center;
-  }
-  .mobile_li:hover {
-    background-color: hsla(164, 19%, 38%, 0.2);
   }
 }

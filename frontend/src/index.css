@@ -3,3 +3,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url(./fonts/Roboto/Roboto-Black.ttf) format("trueType");
+}
+
+@font-face {
+  font-family: "Great_Vibes";
+  src: local("Great_Vibes"),
+    url(./fonts/Great_Vibes/GreatVibes-Regular.ttf) format("trueType");
+}

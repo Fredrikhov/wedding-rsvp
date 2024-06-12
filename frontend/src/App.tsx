@@ -10,7 +10,7 @@ export const App = () => {
     <div className="layout">
       <Nav />
       <SkeletonTheme baseColor="#d9d9d9" highlightColor="#eee">
-        <main>
+        <main className="background-color">
           <Outlet />
         </main>
       </SkeletonTheme>
