@@ -1,10 +1,11 @@
 import LogoutStyle from "./Logout.module.css";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { Navigate } from "react-router-dom";
-import Cookies from "js-cookie";
 
 export const Logout = () => {
   const [redirect, setRedirect] = useState(false);
+  const [cookie] = useCookies(["token"]);
   useEffect(() => {
     const removeCookie = async () => {
       await fetch(`${import.meta.env.VITE_BASE_API_LOGOUT}`, {
@@ -14,7 +15,7 @@ export const Logout = () => {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ delete: Cookies.get("token") }),
+        body: JSON.stringify({ delete: cookie.token }),
       })
         .then(() => setRedirect(true))
         .catch((e) => console.log((e as Error).message));
